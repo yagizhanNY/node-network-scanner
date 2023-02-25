@@ -1,0 +1,16 @@
+{
+  "name": "network-scanner",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Scan network and find available devices.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index"
+  },
+  "author": "Yagizhan Necat YAKALI",
+  "license": "MIT",
+  "dependencies": {
+    "get-ip-range": "^4.0.1",
+    "ping": "^0.4.2"
+  }
+}
