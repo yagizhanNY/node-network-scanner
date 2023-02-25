@@ -33,6 +33,19 @@ networkScanner
   });
 ```
 
+### Output
+
+```json
+[
+  { "ipAddress": "192.168.1.1", "macAddress": "..." },
+  { "ipAddress": "192.168.1.20", "macAddress": "..." },
+  { "ipAddress": "192.168.1.21", "macAddress": "..." },
+  { "ipAddress": "192.168.1.27", "macAddress": "..." },
+  { "ipAddress": "192.168.1.86", "macAddress": "..." },
+  { "ipAddress": "192.168.1.136", "macAddress": "..." }
+]
+```
+
 **I am still trying to optimize the performance of pinging devices.**
 
 **Library haven't published yet, still under development.**
