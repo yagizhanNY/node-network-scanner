@@ -3,6 +3,7 @@ import os from "os";
 import ping from "ping";
 import cp from "child_process";
 import { Filter } from "../interfaces/filter.interface";
+import { Device } from "../types/device";
 
 export default class NetworkHelper {
   getAllNetworkInterfaces = () => {
@@ -37,7 +38,7 @@ export default class NetworkHelper {
 
   getAvailableDevices = async (
     availableNetworkInterfaces: os.NetworkInterfaceInfo[]
-  ) => {
+  ): Promise<Device[]> => {
     let availableDevices = [];
     for await (let availableInterface of availableNetworkInterfaces) {
       const ipAddresses = getIPRange(availableInterface.cidr!);

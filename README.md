@@ -57,5 +57,3 @@ networkScanner
 ```
 
 **I am still trying to optimize the performance of pinging devices.**
-
-**Library haven't published yet, still under development.**

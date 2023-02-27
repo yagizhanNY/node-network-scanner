@@ -1,4 +1,5 @@
 import NetworkHelper from "./helpers/network.js";
+import { Device } from "./types/device.js";
 import { Filter } from "./interfaces/filter.interface.js";
 
 export default class NetworkScanner {
@@ -6,7 +7,7 @@ export default class NetworkScanner {
   constructor() {
     this.networkHelper = new NetworkHelper();
   }
-  getAllDevices = async () => {
+  getAllDevices = async (): Promise<Device[]> => {
     const networkInterfaces = this.networkHelper.getAllNetworkInterfaces();
     const availableNetworkInterfaces =
       this.networkHelper.filterAvailableNetworkInterfaces(networkInterfaces);
@@ -16,7 +17,7 @@ export default class NetworkScanner {
     );
   };
 
-  getAllDevicesByFilter = async (filter: Filter) => {
+  getAllDevicesByFilter = async (filter: Filter): Promise<Device[]> => {
     const networkInterfaces = this.networkHelper.getAllNetworkInterfaces();
     const availableNetworkInterfaces =
       this.networkHelper.filterAvailableNetworkInterfaces(
