@@ -1,6 +1,6 @@
-import NetworkHelper from "./helpers/network.js";
-import { Device } from "./interfaces/device.interface.js";
-import { Filter } from "./interfaces/filter.interface.js";
+import NetworkHelper from "./helpers/network";
+import { Device } from "./interfaces/device.interface";
+import { Filter } from "./interfaces/filter.interface";
 
 export default class NetworkScanner {
   networkHelper;
