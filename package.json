@@ -5,11 +5,17 @@
     "url": "https://github.com/yagizhanNY/network-scanner"
   },
   "type": "module",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Scan network and find available devices.",
   "main": "dist/index.js",
   "files": [
     "dist"
+  ],
+  "keywords": [
+    "network-scan",
+    "lan",
+    "ping",
+    "mac-address"
   ],
   "scripts": {
     "build": "tsc",
