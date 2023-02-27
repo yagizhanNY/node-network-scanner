@@ -1,0 +1,27 @@
+{
+  "name": "node-network-scanner",
+  "version": "1.0.0",
+  "description": "Scan local network and find available devices with this light weight NodeJS library.",
+  "main": "dist/index.ts",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yagizhanNY/node-network-scanner.git"
+  },
+  "author": "Yagizhan Necat Yakali",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yagizhanNY/node-network-scanner/issues"
+  },
+  "homepage": "https://github.com/yagizhanNY/node-network-scanner#readme",
+  "devDependencies": {
+    "@types/node": "^18.14.2",
+    "@types/ping": "^0.4.1"
+  },
+  "dependencies": {
+    "get-ip-range": "^4.0.1",
+    "ping": "^0.4.2"
+  }
+}
