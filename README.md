@@ -1,6 +1,16 @@
-## Network Scanner
+## Node Network Scanner
 
 This library is for scan local network and find available devices.
+
+### Installation
+
+```bash
+npm install node-network-scanner
+# or
+yarn add node-network-scanner
+# or
+pnpm add node-network-scanner
+```
 
 ### Usage
 
