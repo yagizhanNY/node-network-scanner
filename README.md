@@ -56,4 +56,10 @@ networkScanner
 ]
 ```
 
+### Test
+
+```bash
+npm run test
+```
+
 **I am still trying to optimize the performance of pinging devices.**
