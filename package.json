@@ -3,8 +3,18 @@
   "version": "1.0.0",
   "description": "Scan local network and find available devices with this light weight NodeJS library.",
   "main": "dist/index.ts",
+  "keywords": [
+    "network",
+    "scan",
+    "network-scan",
+    "ping",
+    "ip",
+    "mac"
+  ],
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "build": "tsc",
+    "start": "tsc && node dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +27,7 @@
   },
   "homepage": "https://github.com/yagizhanNY/node-network-scanner#readme",
   "devDependencies": {
+    "@types/ip": "^1.1.0",
     "@types/node": "^18.14.2",
     "@types/ping": "^0.4.1"
   },
