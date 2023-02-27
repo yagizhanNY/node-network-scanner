@@ -3,7 +3,7 @@ import os from "os";
 import ping from "ping";
 import cp from "child_process";
 import { Filter } from "../interfaces/filter.interface";
-import { Device } from "../types/device";
+import { Device } from "../interfaces/device.interface";
 
 export default class NetworkHelper {
   getAllNetworkInterfaces = () => {

@@ -1,4 +1,4 @@
-export type Device = {
+export interface Device {
   ipAddress: string;
   macAddress: string | undefined;
-};
+}
