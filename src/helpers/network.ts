@@ -2,24 +2,27 @@ import { getIPRange } from "get-ip-range";
 import os from "os";
 import ping from "ping";
 import cp from "child_process";
+import { Filter } from "../interfaces/filter.interface";
 
 export default class NetworkHelper {
   getAllNetworkInterfaces = () => {
     return os.networkInterfaces();
   };
-  filterAvailableNetworkInterfaces = (filter) => {
-    let availableNetworkInterfaces = [];
-    const networkInterfaces = this.getAllNetworkInterfaces();
+  filterAvailableNetworkInterfaces = (
+    networkInterfaces: NodeJS.Dict<os.NetworkInterfaceInfo[]>,
+    filter?: Filter
+  ) => {
+    let availableNetworkInterfaces: os.NetworkInterfaceInfo[] = [];
 
     for (const [networkInterfaceKey, networkInterfaceObject] of Object.entries(
       networkInterfaces
     )) {
-      networkInterfaceObject.map((obj) => {
+      networkInterfaceObject!.map((obj) => {
         if (obj.family === "IPv4" && obj.internal === false) {
           if (filter) {
             if (
               filter.interfaceAddress === obj.address ||
-              filter.mac === obj.mac
+              filter.macAddress === obj.mac
             ) {
               availableNetworkInterfaces.push(obj);
             }
@@ -32,10 +35,12 @@ export default class NetworkHelper {
     return availableNetworkInterfaces;
   };
 
-  getAvailableDevices = async (availableNetworkInterfaces) => {
+  getAvailableDevices = async (
+    availableNetworkInterfaces: os.NetworkInterfaceInfo[]
+  ) => {
     let availableDevices = [];
     for await (let availableInterface of availableNetworkInterfaces) {
-      const ipAddresses = getIPRange(availableInterface.cidr);
+      const ipAddresses = getIPRange(availableInterface.cidr!);
       const res = await Promise.all(ipAddresses.map(pingDevice));
       for await (let device of res) {
         if (device.alive === true) {
@@ -51,11 +56,11 @@ export default class NetworkHelper {
   };
 }
 
-const pingDevice = async (ipAddress) => {
+const pingDevice = async (ipAddress: string) => {
   return await ping.promise.probe(ipAddress, { timeout: 3 });
 };
 
-const getMacAddress = (ipAddress) => {
+const getMacAddress = (ipAddress: string) => {
   const TEN_MEGA_BYTE = 1024 * 1024 * 10;
   const ONE_MINUTE = 60 * 1000;
   const options = {

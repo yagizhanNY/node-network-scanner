@@ -1,4 +1,5 @@
 import NetworkHelper from "./helpers/network.js";
+import { Filter } from "./interfaces/filter.interface.js";
 
 export default class NetworkScanner {
   networkHelper;
@@ -6,28 +7,25 @@ export default class NetworkScanner {
     this.networkHelper = new NetworkHelper();
   }
   getAllDevices = async () => {
+    const networkInterfaces = this.networkHelper.getAllNetworkInterfaces();
     const availableNetworkInterfaces =
-      this.networkHelper.filterAvailableNetworkInterfaces();
+      this.networkHelper.filterAvailableNetworkInterfaces(networkInterfaces);
 
     return await this.networkHelper.getAvailableDevices(
       availableNetworkInterfaces
     );
   };
 
-  getAllDevicesByFilter = async (filter) => {
+  getAllDevicesByFilter = async (filter: Filter) => {
+    const networkInterfaces = this.networkHelper.getAllNetworkInterfaces();
     const availableNetworkInterfaces =
-      this.networkHelper.filterAvailableNetworkInterfaces(filter);
+      this.networkHelper.filterAvailableNetworkInterfaces(
+        networkInterfaces,
+        filter
+      );
 
     return await this.networkHelper.getAvailableDevices(
       availableNetworkInterfaces
     );
   };
 }
-
-const networkScanner = new NetworkScanner();
-//networkScanner.getAllDevices().then((res) => console.log(res));
-networkScanner
-  .getAllDevicesByFilter({ interfaceAddress: "192.168.1.86" })
-  .then((res) => {
-    console.log(res);
-  });
