@@ -5,7 +5,7 @@
     "url": "https://github.com/yagizhanNY/network-scanner"
   },
   "type": "module",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Scan network and find available devices.",
   "main": "dist/index.js",
   "files": [
