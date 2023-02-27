@@ -69,8 +69,9 @@ const getMacAddress = (ipAddress: string) => {
     timeout: ONE_MINUTE,
   };
   const isWindows = process.platform.includes("win32");
+  const isMacOs = process.platform.includes("darwin");
 
-  if (isWindows === false) {
+  if (isWindows === false && isMacOs === false) {
     const cmd = `arp -a ${ipAddress}`;
 
     const result = String(cp.execSync(cmd, options));
@@ -81,7 +82,11 @@ const getMacAddress = (ipAddress: string) => {
 
     const result = String(cp.execSync(cmd, options));
     return result.split("\n")[3]?.split(" ").filter(Boolean)[1];
-  } else {
-    return undefined;
+  } else if (isMacOs === true) {
+    const cmd = `arp -n ${ipAddress}`;
+
+    const result = String(cp.execSync(cmd, options));
+    if (result.includes("entries no match found.")) return "";
+    return result.split(" ").filter(Boolean)[3];
   }
 };
