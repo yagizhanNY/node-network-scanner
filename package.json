@@ -1,8 +1,8 @@
 {
-  "name": "node-network-scanner",
-  "version": "1.0.0",
+  "name": "node-network-scan",
+  "version": "1.0.8",
   "description": "Scan local network and find available devices with this light weight NodeJS library.",
-  "main": "dist/index.ts",
+  "main": "dist/index.js",
   "keywords": [
     "network",
     "scan",
@@ -16,6 +16,7 @@
     "build": "tsc",
     "start": "tsc && node dist/index.js"
   },
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yagizhanNY/node-network-scanner.git"
@@ -26,13 +27,14 @@
     "url": "https://github.com/yagizhanNY/node-network-scanner/issues"
   },
   "homepage": "https://github.com/yagizhanNY/node-network-scanner#readme",
-  "devDependencies": {
-    "@types/ip": "^1.1.0",
-    "@types/node": "^18.14.2",
-    "@types/ping": "^0.4.1"
-  },
   "dependencies": {
+    "@types/ip": "^1.1.0",
+    "@types/ping": "^0.4.1",
     "get-ip-range": "^4.0.1",
-    "ping": "^0.4.2"
+    "ping": "^0.4.2",
+    "typescript": "next"
+  },
+  "devDependencies": {
+    "@types/node": "^18.14.2"
   }
 }
