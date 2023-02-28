@@ -17,6 +17,8 @@ pnpm add node-network-scanner
 Find all available devices on local network.
 
 ```javascript
+import { NetworkScanner } from "node-network-scan";
+
 const networkScanner = new NetworkScanner();
 networkScanner.getAllDevices().then((res) => console.log(res));
 ```
@@ -24,6 +26,8 @@ networkScanner.getAllDevices().then((res) => console.log(res));
 Find all available devices on specific network interface by interface address.
 
 ```javascript
+import { NetworkScanner } from "node-network-scan";
+
 const networkScanner = new NetworkScanner();
 networkScanner
   .getAllDevicesByFilter({ interfaceAddress: "192.168.1.86" })
@@ -35,6 +39,8 @@ networkScanner
 Find all available devices on specific network interface by mac address.
 
 ```javascript
+import { NetworkScanner } from "node-network-scan";
+
 const networkScanner = new NetworkScanner();
 networkScanner
   .getAllDevicesByFilter({ mac: "xx-xx-xx-xx-xx-xx" })
