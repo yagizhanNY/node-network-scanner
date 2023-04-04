@@ -4,7 +4,6 @@
     "type": "git",
     "url": "https://github.com/yagizhanNY/network-scanner"
   },
-  "type": "module",
   "version": "1.0.8",
   "description": "Scan network and find available devices.",
   "main": "dist/index.js",
@@ -26,7 +25,8 @@
   "license": "MIT",
   "dependencies": {
     "get-ip-range": "^4.0.1",
-    "ping": "^0.4.2"
+    "ping": "^0.4.2",
+    "promise-socket": "^7.0.0"
   },
   "devDependencies": {
     "@types/ip": "^1.1.0",

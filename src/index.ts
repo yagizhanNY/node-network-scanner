@@ -7,17 +7,21 @@ export default class NetworkScanner {
   constructor() {
     this.networkHelper = new NetworkHelper();
   }
-  getAllDevices = async (): Promise<Device[]> => {
+  getAllDevices = async (port?: number): Promise<Device[]> => {
     const networkInterfaces = this.networkHelper.getAllNetworkInterfaces();
     const availableNetworkInterfaces =
       this.networkHelper.filterAvailableNetworkInterfaces(networkInterfaces);
 
     return await this.networkHelper.getAvailableDevices(
-      availableNetworkInterfaces
+      availableNetworkInterfaces,
+      port
     );
   };
 
-  getAllDevicesByFilter = async (filter: Filter): Promise<Device[]> => {
+  getAllDevicesByFilter = async (
+    filter: Filter,
+    port?: number
+  ): Promise<Device[]> => {
     const networkInterfaces = this.networkHelper.getAllNetworkInterfaces();
     const availableNetworkInterfaces =
       this.networkHelper.filterAvailableNetworkInterfaces(
@@ -26,7 +30,8 @@ export default class NetworkScanner {
       );
 
     return await this.networkHelper.getAvailableDevices(
-      availableNetworkInterfaces
+      availableNetworkInterfaces,
+      port
     );
   };
 }

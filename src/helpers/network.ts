@@ -4,6 +4,7 @@ import ping from "ping";
 import cp from "child_process";
 import { Filter } from "../interfaces/filter.interface";
 import { Device } from "../interfaces/device.interface";
+import { PromiseSocket } from "promise-socket";
 
 export default class NetworkHelper {
   getAllNetworkInterfaces = () => {
@@ -37,23 +38,35 @@ export default class NetworkHelper {
   };
 
   getAvailableDevices = async (
-    availableNetworkInterfaces: os.NetworkInterfaceInfo[]
+    availableNetworkInterfaces: os.NetworkInterfaceInfo[],
+    port?: number
   ): Promise<Device[]> => {
-    let availableDevices = [];
+    let availableDevices: Device[] = [];
+    console.log(availableNetworkInterfaces);
     for await (let availableInterface of availableNetworkInterfaces) {
       const ipAddresses = getIPRange(availableInterface.cidr!);
       const res = await Promise.all(ipAddresses.map(pingDevice));
       for await (let device of res) {
         if (device.alive === true) {
-          const macAddress = getMacAddress(device.host);
-          availableDevices.push({
-            ipAddress: device.host,
-            macAddress: macAddress,
-          });
+          if (port !== null) {
+            if ((await isPortAvailable(device.host, port!)) === true) {
+              addDevice(device);
+            }
+          } else {
+            addDevice(device);
+          }
         }
       }
     }
     return availableDevices;
+
+    function addDevice(device: ping.PingResponse) {
+      const macAddress = getMacAddress(device.host);
+      availableDevices.push({
+        ipAddress: device.host,
+        macAddress: macAddress,
+      });
+    }
   };
 }
 
@@ -83,5 +96,18 @@ const getMacAddress = (ipAddress: string) => {
     return result.split("\n")[3]?.split(" ").filter(Boolean)[1];
   } else {
     return undefined;
+  }
+};
+
+const isPortAvailable = async (
+  ipAddress: string,
+  port: number
+): Promise<boolean> => {
+  var client = new PromiseSocket();
+  try {
+    await client.connect(port, ipAddress);
+    return true;
+  } catch {
+    return false;
   }
 };
